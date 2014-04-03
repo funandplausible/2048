@@ -22,6 +22,11 @@ h1.title {
   display: block;
   float: left; }
 
+
+h1 .smaller {
+    font-size:.7em;
+}
+
 @-webkit-keyframes move-up {
   0% {
     top: 25px;
