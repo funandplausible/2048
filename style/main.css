@@ -124,6 +124,68 @@ hr {
   width: 500px;
   margin: 0 auto; }
 
+.grid-cell.tile-highlight {
+    background-color:#fff;
+}
+
+.tile.tile-2 .tile-inner.tile-highlight {
+    background-color:#111B21;
+    color:#fff;
+}
+
+.tile-highlight {
+    transition: all 100ms ease-in;
+}
+.tile-highlight-out {
+    transition: all 200ms ease-in;
+}
+
+.tile.tile-4 .tile-inner.tile-highlight {
+    background: #121F37;
+    color:#fff;
+}
+
+.tile.tile-8 .tile-inner.tile-highlight {
+    background-color:#06090D;
+    color:#fff;
+}
+.tile.tile-16 .tile-inner.tile-highlight {
+    background-color: #0A6A9C;
+    color:rgba(255,255,255,0.87);
+}
+.tile.tile-32 .tile-inner.tile-highlight {
+    background: #0983A0;
+    color:rgba(255,255,255,0.87);
+}
+.tile.tile-64 .tile-inner.tile-highlight {
+    background: #09A1C4;
+    color:rgba(255,255,255,0.87);
+}
+.tile.tile-128 .tile-inner.tile-highlight {
+    background: #12308D;
+    color:rgba(255,255,255,0.87);
+}
+
+.tile.tile-256 .tile-inner.tile-highlight {
+    background: #12339E;
+    color:rgba(255,255,255,0.87);
+}
+
+.tile.tile-512 .tile-inner.tile-highlight {
+    background: #edc850;
+    color:#fff;
+}
+
+.tile.tile-1024 .tile-inner.tile-highlight {
+    background: #edc53f;
+    color:#fff;
+}
+
+.tile.tile-2048 .tile-inner.tile-highlight {
+    background: #edc22e;
+    color:#fff;
+}
+
 @-webkit-keyframes fade-in {
   0% {
     opacity: 0; }
