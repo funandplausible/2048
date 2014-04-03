@@ -129,6 +129,20 @@ hr {
     -webkit-filter: brightness(15%);
 }
 
+#info {
+    height:100vh;
+    width:100%;
+    position:fixed;
+    padding-top:40vh;
+    background-color:rgba(0,0,0,.7);
+    top:0;
+    left:0;
+    text-align:center;
+    z-index:1000;
+    font-size: 80px;
+    color:#fff;
+}
+
 .tile.tile-2 .tile-inner.tile-highlight {
     //background-color:#111B21;
     -webkit-filter: brightness(80%);
@@ -187,12 +201,12 @@ hr {
 }
 
 .tile.tile-1024 .tile-inner.tile-highlight {
-    background: #edc53f;
+    -webkit-filter: brightness(80%);
     color:#fff;
 }
 
 .tile.tile-2048 .tile-inner.tile-highlight {
-    background: #edc22e;
+    -webkit-filter: brightness(80%);
     color:#fff;
 }
 
@@ -390,60 +404,83 @@ hr {
     z-index: 10;
     font-size: 55px; }
   .tile.tile-2 .tile-inner {
-    background: #eee4da;
+    background-image:url('/face.png');
+    color:#fff;
+    background-size:cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
   .tile.tile-4 .tile-inner {
-    background: #ede0c8;
-    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
+    background-image:url('http://i.imgur.com/SCHRF9b.jpg');
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); 
+    background-size:cover;
+    color:#fff;
+    }
   .tile.tile-8 .tile-inner {
+    background-image:url('http://medias.gifboom.com/medias/t_c54ff3fff91d4a5bad5c4f79cfef2b2b.jpg');
     color: #f9f6f2;
-    background: #f2b179; }
+    background-size:cover;
+  }
   .tile.tile-16 .tile-inner {
     color: #f9f6f2;
-    background: #f59563; }
+    background-image:url('http://imalbum.aufeminin.com/album/D20130830/ricky-gervais-944780_H121523_L.jpg');
+    background-size:cover;
+}
   .tile.tile-32 .tile-inner {
     color: #f9f6f2;
-    background: #f67c5f; }
+    background: url('http://www.kiss925.com/files/bad-selfie-5.jpg');
+    background-size:cover;
+}
   .tile.tile-64 .tile-inner {
     color: #f9f6f2;
-    background: #f65e3b; }
+    background: url('http://cdn4.sosueme.ie/wp-content/uploads/2013/09/selfie-zooey-deschanel__big.jpg'); 
+    background-size:cover;
+}
   .tile.tile-128 .tile-inner {
     color: #f9f6f2;
-    background: #edcf72;
+    background: url('http://us.cdn291.fansshare.com/photo/selfie/bynes-selfie-worst-755812145.jpg');
+    background-size:cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.2381), inset 0 0 0 1px rgba(255, 255, 255, 0.14286);
-    font-size: 45px; }
+    font-size: 45px; 
+}
     @media screen and (max-width: 520px) {
       .tile.tile-128 .tile-inner {
         font-size: 25px; } }
   .tile.tile-256 .tile-inner {
     color: #f9f6f2;
-    background: #edcc61;
+    background: url('http://www.oddee.com/_media/imgs/articles2/a98636_selfie_7-baby-duck-face.jpg');
+    background-size:cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
-    font-size: 45px; }
+    font-size: 45px; 
+}
     @media screen and (max-width: 520px) {
       .tile.tile-256 .tile-inner {
         font-size: 25px; } }
   .tile.tile-512 .tile-inner {
     color: #f9f6f2;
-    background: #edc850;
+    background: url('http://img2.wikia.nocookie.net/__cb20130806054357/degrassi/images/0/0f/Stefon-selfie-gif.gif');
+    background-size:cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
-    font-size: 45px; }
+    font-size: 45px; 
+}
     @media screen and (max-width: 520px) {
       .tile.tile-512 .tile-inner {
         font-size: 25px; } }
   .tile.tile-1024 .tile-inner {
     color: #f9f6f2;
-    background: #edc53f;
+    background: url('http://media-cache-ak0.pinimg.com/736x/46/25/ba/4625bad4981b12bc99a75797ca57b6c7.jpg');
+    background-size:cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.47619), inset 0 0 0 1px rgba(255, 255, 255, 0.28571);
-    font-size: 35px; }
+    font-size: 35px; 
+}
     @media screen and (max-width: 520px) {
       .tile.tile-1024 .tile-inner {
         font-size: 15px; } }
   .tile.tile-2048 .tile-inner {
     color: #f9f6f2;
-    background: #edc22e;
+    background: url('https://pbs.twimg.com/media/BkFhvWpIMAE9pvo.jpg');
+    background-size:cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
-    font-size: 35px; }
+    font-size: 35px; 
+}
     @media screen and (max-width: 520px) {
       .tile.tile-2048 .tile-inner {
         font-size: 15px; } }
