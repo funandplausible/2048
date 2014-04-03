@@ -125,11 +125,13 @@ hr {
   margin: 0 auto; }
 
 .grid-cell.tile-highlight {
-    background-color:#fff;
+    //background-color:#fff;
+    -webkit-filter: brightness(15%);
 }
 
 .tile.tile-2 .tile-inner.tile-highlight {
-    background-color:#111B21;
+    //background-color:#111B21;
+    -webkit-filter: brightness(80%);
     color:#fff;
 }
 
@@ -141,38 +143,46 @@ hr {
 }
 
 .tile.tile-4 .tile-inner.tile-highlight {
-    background: #121F37;
+    //background: #121F37;
+    -webkit-filter: brightness(80%);
     color:#fff;
 }
 
 .tile.tile-8 .tile-inner.tile-highlight {
-    background-color:#06090D;
+    //background-color:#06090D;
+    -webkit-filter: brightness(80%);
     color:#fff;
 }
 .tile.tile-16 .tile-inner.tile-highlight {
-    background-color: #0A6A9C;
+    //background-color: #0A6A9C;
+    -webkit-filter: brightness(80%);
     color:rgba(255,255,255,0.87);
 }
 .tile.tile-32 .tile-inner.tile-highlight {
-    background: #0983A0;
+    //background: #0983A0;
+    -webkit-filter: brightness(80%);
     color:rgba(255,255,255,0.87);
 }
 .tile.tile-64 .tile-inner.tile-highlight {
-    background: #09A1C4;
+    //background: #09A1C4;
+    -webkit-filter: brightness(80%);
     color:rgba(255,255,255,0.87);
 }
 .tile.tile-128 .tile-inner.tile-highlight {
-    background: #12308D;
+    //background: #12308D;
+    -webkit-filter: brightness(80%);
     color:rgba(255,255,255,0.87);
 }
 
 .tile.tile-256 .tile-inner.tile-highlight {
-    background: #12339E;
+    //background: #12339E;
+    -webkit-filter: brightness(80%);
     color:rgba(255,255,255,0.87);
 }
 
 .tile.tile-512 .tile-inner.tile-highlight {
-    background: #edc850;
+    //background: #edc850;
+    -webkit-filter: brightness(80%);
     color:#fff;
 }
 
