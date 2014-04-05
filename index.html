@@ -8,6 +8,7 @@
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   <meta name="apple-mobile-web-app-capable" content="yes">
 
   <meta name="HandheldFriendly" content="True">
@@ -26,7 +27,7 @@
     </div>
 
     <div class="above-game">
-      <p class="">Join the numbers and get to the <strong>2048 tile!</strong></p>
+      <p class="" id='expl'>Join the numbers and get to the <strong>2048 tile!</strong></p>
       <form id='nest' action="https://s3.amazonaws.com/static.echonest.com" method="post" enctype="multipart/form-data">
           <input id='f-filename' type="hidden" name="key" value="remix_audio/${filename}">
           <input id='f-key' type="hidden" name="AWSAccessKeyId" value="YOUR_AWS_ACCESS_KEY"> 

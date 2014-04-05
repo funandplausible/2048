@@ -46,6 +46,9 @@ function init(trackID, trackURL) {
         remixer.remixTrackById(trackID, trackURL, function(t, percent) {
             track = t;
 
+            window.artist = track.artist;
+            window.title = track.title;
+
             $("#info").text(percent + "% of the track loaded");
             if (percent == 100) {
                 $("#info").text(percent + "% of the track loaded, remixing...");
@@ -55,6 +58,8 @@ function init(trackID, trackURL) {
                 player.addOnPlayCallback(trigger);
                 $("#info").text("Remix complete!");
                 $("#info").hide();
+                $("#expl").append('<a href="https://twitter.com/share" class="twitter-share-button" data-text="I\'m playing 2048 with \'' + window.title + '\' by \'' + window.artist + '\' (' + window.location.href + ')." data-via="funandplausible" data-hashtags="musichackday">Tweet</a>');
+                twttr.widgets.load();
                 window.gameManager = new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager);
                 window.gameManager.restart();
                 window.ping();
@@ -92,6 +97,7 @@ $(document).ready(function() {
         console.log("here");
         $("#select-track").hide();
         $("#play-remix").hide();
+        $("#info").show();
         $("#info").text("Analyzing audio...");
         trackURL = 'http://' + params['bucket'] + '/' + urldecode(params['key']);
 
