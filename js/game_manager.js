@@ -9,8 +9,38 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
   this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
+  var that = this;
 
+  var currentlyPlaying = null;
   this.setup();
+  setInterval(function() {
+      if (currentlyPlaying == null) {
+          currentlyPlaying = that.maxTileValue();
+          console.log("playing" + currentlyPlaying);
+          window.tomahawks[currentlyPlaying].play();
+      } else {
+          if (that.maxTileValue() > currentlyPlaying) {
+              console.log("stopping" + currentlyPlaying)
+              window.tomahawks[currentlyPlaying].pause();
+              currentlyPlaying = that.maxTileValue();
+              console.log("starting" + currentlyPlaying)
+              window.tomahawks[currentlyPlaying].play();
+          }
+      }
+  }, 100);
+}
+
+GameManager.prototype.maxTileValue = function () {
+    var maxTile = 0;
+    this.grid.eachCell(function(x,y,cell) {
+        var tile = cell;
+
+        if (tile && tile.value > maxTile) {
+            maxTile = tile.value;
+        }
+    });
+
+    return maxTile;
 }
 
 // Restart the game
@@ -130,6 +160,7 @@ GameManager.prototype.moveTile = function (tile, cell) {
   tile.updatePosition(cell);
 };
 
+var lastLargestTile = 0;
 // Move tiles on the grid in the specified direction
 GameManager.prototype.move = function (direction) {
   // 0: up, 1: right, 2: down, 3: left
