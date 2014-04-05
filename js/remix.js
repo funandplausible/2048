@@ -19,7 +19,7 @@ function createJRemixer(context, jquery, apiKey) {
                 $.getJSON(url, {id:trackID, api_key:apiKey}, function(data) {
                     var analysisURL = data.response.track.audio_summary.analysis_url;
                     track = data.response.track;
-                    
+
                     // This call is proxied through the yahoo query engine.  
                     // This is temporary, but works.
                     $.getJSON("http://query.yahooapis.com/v1/public/yql", 

@@ -3,16 +3,9 @@ html, body {
   margin: 0;
   padding: 0;
   background: #faf8ef;
-  color: #000;
+  color: #776e65;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
-  font-size: 18px; 
-}
-
-body {
-  background-image: url('http://the305.com/blog/wp-content/uploads/2014/01/skrillex-ultra-2014.jpg');
-  background-size:cover;
-}
-
+  font-size: 18px; }
 
 #info {
     height:100vh;
@@ -26,10 +19,11 @@ body {
     z-index:1000;
     font-size: 80px;
     color:#fff;
+    display:none;
 }
 
 body {
-}
+  margin: 80px 0; }
 
 .heading:after {
   content: "";
@@ -143,11 +137,7 @@ hr {
 
 .container {
   width: 500px;
-  background:rgba(255,255,255,0.7);
-
-  padding:80px 80px;
-  margin:0 auto;
-   }
+  margin: 0 auto; }
 
 .grid-cell.tile-highlight {
     //background-color:#fff;
@@ -599,7 +589,8 @@ hr {
   line-height: 42px;
   display: block;
   text-align: center;
-  float: right; }
+  }
+
 
 .game-explanation {
   margin-top: 50px; }

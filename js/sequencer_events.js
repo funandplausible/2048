@@ -3,8 +3,6 @@
     window.currentBeat = 0;
     console.log("defining ping");
     window.ping = function() {
-        window.gameManager
-        window.gameManager.move("beat");
         var currentRow  = Math.floor(window.currentBeat / 4) + 1;
         var currentTile = window.currentBeat % 4 + 1;
         var elem = $(".tile-position-" + currentTile + "-" + currentRow + " .tile-inner")[0];

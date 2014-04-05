@@ -4,8 +4,6 @@
 // You will need to supply your Echo Nest API key, the trackID, and a URL to the track.
 // The supplied track can be found in the audio subdirectory.
 var apiKey = 'NODV0LSHAP8SI9WAF';
-var trackID = 'TRXOLHK13B0BC4D02B';
-var trackURL = 'http://funandplausible.com/bangarang.mp3'
 
 var remixer;
 var player;
@@ -20,7 +18,19 @@ function trigger() {
     window.ping();
 }
 
-function init() {
+function analyzeAudio(audio, tag, callback) {
+    var url = 'http://remix.echonest.com/Uploader/qanalyze?callback=?'
+    $.getJSON(url, { url:audio, api_key:apiKey, tag:tag}, function(data) {
+        if (data.status === 'done' || data.status === 'error') {
+            callback(data);
+        } else {
+            $("#info").text(data.status + ' - ready in about ' + data.estimated_wait + ' secs. ');
+            setTimeout(function() { analyzeAudio(audio, tag, callback); }, 8000);
+        } 
+    });
+}
+
+function init(trackID, trackURL) {
     if (window.webkitAudioContext === undefined) {
         error("Sorry, this app needs advanced web audio. Your browser doesn't"
             + " support it. Try the latest version of Chrome");
@@ -53,7 +63,60 @@ function init() {
     }
 }
 
-window.onload = init;
+$(document).ready(function() {
+    fetchSignature();
+    console.log("hi");
+    $(".restart-button").mouseup(function() {
+        console.log("lols");
+        $("#redirect-url").attr("value", window.location.href);
+        $("input[type=file]").click();
+        $("input[type=file]").change(function() {
+            $("#nest").submit();
+        });
+    });
+    var params = {};
+    var q = document.URL.split('?')[1];
+    if(q != undefined){
+        q = q.split('&');
+        for(var i = 0; i < q.length; i++){
+            var pv = q[i].split('=');
+            var p = pv[0];
+            var v = pv[1];
+            params[p] = v;
+        }
+    }
+
+    if ('key' in params) {
+        // We just uploaded a track.
+        // We need to log the trackID and the URL, and then redirect.
+        console.log("here");
+        $("#select-track").hide();
+        $("#play-remix").hide();
+        $("#info").text("Analyzing audio...");
+        trackURL = 'http://' + params['bucket'] + '/' + urldecode(params['key']);
+
+        analyzeAudio(trackURL, 'tag', function(data) {
+            if (data.status === 'done') {
+                var newUrl = location.protocol + "//" +  location.host + location.pathname + "?trid=" + data.trid;
+                location.href = newUrl;
+            }
+        });
+    } else if ('trid' in params) {
+        var trackID = params['trid'].replace("/", "");
+        var urlXHR = getProfile(trackID, function(data) {
+            if (data.status == true) {
+                console.log(data);
+                trackURL = data.url;
+                $("#nest").hide();
+                $("#info").show();
+                init(trackID, trackURL);
+            } else {
+                console.log("Track id error.");
+            }
+        });
+    }
+});
+
 $(document).keyup(function(e) {
     if (e.keyCode == 32) {
         player.stop();
