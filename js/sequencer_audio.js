@@ -95,7 +95,7 @@ $(document).ready(function() {
         // We just uploaded a track.
         // We need to log the trackID and the URL, and then redirect.
         console.log("here");
-        $(".restart-button").text("Upload another track to play with a different song");
+        $(".restart-button").text("Upload and play with a different song (mp3 only)");
         $("#play-remix").hide();
         $("#info").show();
         $("#info").text("Analyzing audio...");
@@ -108,7 +108,7 @@ $(document).ready(function() {
             }
         });
     } else if ('trid' in params) {
-        $(".restart-button").text("Upload another track to play with a different song");
+        $(".restart-button").text("Upload and play with a different song (mp3 only)");
         var trackID = params['trid'].replace("/", "");
         var urlXHR = getProfile(trackID, function(data) {
             if (data.status == true) {
