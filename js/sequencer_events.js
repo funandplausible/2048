@@ -8,7 +8,7 @@
               height:0,
               disabledResolvers: [
             "Youtube",
-              "Exfm", "SpotifyMetadata"
+              "Exfm", "SpotifyMetadata", "SoundCloud"
             // options: "SoundCloud", "Officialfm", "Lastfm", "Jamendo", "Youtube", "Rdio", "SpotifyMetadata", "Deezer", "Exfm"
             ],
               handlers: {
@@ -94,10 +94,22 @@
         var artist = "Ellie Goulding";
         window.tomahawks = {};
         window.playing_hawks = {};
-        $.get("http://developer.echonest.com/api/v4/artist/songs?api_key=NODV0LSHAP8SI9WAF&name=" + artist + "&format=json&results=11&start=0", function(response) {
+        var seenItems = [];
+        var banned_titles = [
+            "Goodness Gracious",
+            "Lights (Single Version)",
+            "Beating Heart",
+            "Explosions",
+        ];
+        var i = 0;
+        $.get("http://developer.echonest.com/api/v4/artist/songs?api_key=NODV0LSHAP8SI9WAF&name=" + artist + "&format=json&results=100&start=0", function(response) {
             var tracks = response["response"]["songs"];
-            for (var i = 0; i < tracks.length; i++) {
-                getTrack(i, tracks[i].title, artist);
+            while (seenItems.length < 12) {
+                if (seenItems.indexOf(tracks[i].title) == -1 && banned_titles.indexOf(tracks[i].title) == -1) {
+                    seenItems.unshift(tracks[i].title);
+                    getTrack(seenItems.length-1, tracks[i].title, artist);
+                }
+                i += 1;
             }
         });
     });
