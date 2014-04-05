@@ -13,7 +13,7 @@
         if (elem != null) {
             var elem = $(".tile-position-" + currentTile + "-" + currentRow + " .tile-inner");
             var tileValue = parseInt(elem.text());
-            var beat = track.analysis.beats[((window.currentBeat+1) + (tileValue*4)) % track.analysis.beats.length];
+            var beat = track.analysis.beats[((window.currentBeat+1) + (tileValue*4) + (4 * 10)) % track.analysis.beats.length];
             $(elem).addClass("tile-highlight");
             player.queue(beat);
             window.gain.gain.value = 1.0;
@@ -21,7 +21,7 @@
             var elem = $(".grid-container .grid-row:nth-child(" + currentRow + ") .grid-cell:nth-child(" + currentTile + ")");
             elem.addClass("tile-highlight");
             player.queue(track.analysis.beats[window.currentBeat+1]);
-            window.gain.gain.value = 0.5;
+            window.gain.gain.value = 1.0;
         }
 
         window.currentBeat = window.currentBeat % 16;

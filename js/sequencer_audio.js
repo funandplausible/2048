@@ -95,7 +95,7 @@ $(document).ready(function() {
         // We just uploaded a track.
         // We need to log the trackID and the URL, and then redirect.
         console.log("here");
-        $("#select-track").hide();
+        $(".restart-button").text("Upload another track to play with a different song");
         $("#play-remix").hide();
         $("#info").show();
         $("#info").text("Analyzing audio...");
@@ -108,12 +108,12 @@ $(document).ready(function() {
             }
         });
     } else if ('trid' in params) {
+        $(".restart-button").text("Upload another track to play with a different song");
         var trackID = params['trid'].replace("/", "");
         var urlXHR = getProfile(trackID, function(data) {
             if (data.status == true) {
                 console.log(data);
                 trackURL = data.url;
-                $("#nest").hide();
                 $("#info").show();
                 init(trackID, trackURL);
             } else {
@@ -123,9 +123,17 @@ $(document).ready(function() {
     }
 });
 
+var playing = true;
 $(document).keyup(function(e) {
     if (e.keyCode == 32) {
-        player.stop();
+        if (playing) {
+            player.stop();
+            playing = false;
+        } else {
+            playing = true;
+            window.ping();
+            player.play();
+        }
     }
 });
 
