@@ -3,6 +3,10 @@
     window.currentBeat = 0;
     console.log("defining ping");
     window.ping = function() {
+        var b = window.currentBeat - 1;
+        if (b < 0) {
+            b = 16;
+        }
         var currentRow  = Math.floor(window.currentBeat / 4) + 1;
         var currentTile = window.currentBeat % 4 + 1;
         var elem = $(".tile-position-" + currentTile + "-" + currentRow + " .tile-inner")[0];
