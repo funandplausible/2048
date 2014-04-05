@@ -58,7 +58,7 @@ function init(trackID, trackURL) {
                 player.addOnPlayCallback(trigger);
                 $("#info").text("Remix complete!");
                 $("#info").hide();
-                $("#expl").append('<a href="https://twitter.com/share" class="twitter-share-button" data-text="I\'m playing 2048 with \'' + window.title + '\' by \'' + window.artist + '\' (' + window.location.href + ')." data-via="funandplausible" data-hashtags="musichackday">Tweet</a>');
+                $("#expl").append('<a href="https://twitter.com/share" class="twitter-share-button" data-text="I\'m playing 2048 with \'' + window.title + '\' by \'' + window.artist + '\'" data-via="funandplausible" data-hashtags="musichackday">Tweet</a>');
                 twttr.widgets.load();
                 window.gameManager = new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager);
                 window.gameManager.restart();
