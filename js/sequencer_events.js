@@ -15,7 +15,7 @@
         if (elem != null) {
             var elem = $(".tile-position-" + currentTile + "-" + currentRow + " .tile-inner");
             var tileValue = parseInt(elem.text());
-            var beat = track.analysis.beats[((window.currentBeat+1) + (tileValue*4)) % track.analysis.beats.length];
+            var beat = track.analysis.beats[((window.currentBeat+1) + (tileValue*4) + (4*30)) % track.analysis.beats.length];
             $(elem).addClass("tile-highlight");
             player.queue(beat);
             window.gain.gain.value = 1.0;

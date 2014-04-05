@@ -73,13 +73,13 @@ h1 .smaller {
     top: -50px;
     opacity: 0; } }
 .scores-container {
-  float: right;
-  text-align: right; }
+
+  }
 
 .score-container, .best-container {
   position: relative;
   display: inline-block;
-  background: #bbada0;
+  background: #8f7a66;
   padding: 15px 25px;
   font-size: 25px;
   height: 25px;
@@ -584,7 +584,7 @@ hr {
   clear: both; }
 
 .game-intro {
-  float: left;
+  
   line-height: 42px;
   margin-bottom: 0; }
 
@@ -594,12 +594,12 @@ hr {
   border-radius: 3px;
   padding: 0 20px;
   text-decoration: none;
-  color: #f9f6f2;
+  color: #fff;
   height: 40px;
   line-height: 42px;
   display: block;
   text-align: center;
-  float: right; }
+   }
 
 .game-explanation {
   margin-top: 50px; }
