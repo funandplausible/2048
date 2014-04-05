@@ -4,8 +4,8 @@
 // You will need to supply your Echo Nest API key, the trackID, and a URL to the track.
 // The supplied track can be found in the audio subdirectory.
 var apiKey = 'NODV0LSHAP8SI9WAF';
-var trackID = 'TROSXDD1452892CA20';
-var trackURL = 'http://funandplausible.com/selfie.mp3'
+var trackID = 'TRXOLHK13B0BC4D02B';
+var trackURL = 'http://funandplausible.com/bangarang.mp3'
 
 var remixer;
 var player;

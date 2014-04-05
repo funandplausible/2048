@@ -80,7 +80,7 @@ GameManager.prototype.addRandomTile = function () {
 };
 
 // Sends the updated grid to the actuator
-GameManager.prototype.actuate = function () {
+GameManager.prototype.actuate = function (direction) {
   if (this.storageManager.getBestScore() < this.score) {
     this.storageManager.setBestScore(this.score);
   }
@@ -97,7 +97,8 @@ GameManager.prototype.actuate = function () {
     over:       this.over,
     won:        this.won,
     bestScore:  this.storageManager.getBestScore(),
-    terminated: this.isGameTerminated()
+    terminated: this.isGameTerminated(),
+    clearTiles: direction
   });
 
 };
@@ -137,60 +138,64 @@ GameManager.prototype.move = function (direction) {
 
   if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
-  var cell, tile;
-
-  var vector     = this.getVector(direction);
-  var traversals = this.buildTraversals(vector);
   var moved      = false;
 
-  // Save the current tile positions and remove merger information
-  this.prepareTiles();
+  if (direction != "beat") {
 
-  // Traverse the grid in the right direction and move tiles
-  traversals.x.forEach(function (x) {
-    traversals.y.forEach(function (y) {
-      cell = { x: x, y: y };
-      tile = self.grid.cellContent(cell);
+      var cell, tile;
 
-      if (tile) {
-        var positions = self.findFarthestPosition(cell, vector);
-        var next      = self.grid.cellContent(positions.next);
+      var vector     = this.getVector(direction);
+      var traversals = this.buildTraversals(vector);
 
-        // Only one merger per row traversal?
-        if (next && next.value === tile.value && !next.mergedFrom) {
-          var merged = new Tile(positions.next, tile.value * 2);
-          merged.mergedFrom = [tile, next];
+      // Save the current tile positions and remove merger information
+      this.prepareTiles();
 
-          self.grid.insertTile(merged);
-          self.grid.removeTile(tile);
+      // Traverse the grid in the right direction and move tiles
+      traversals.x.forEach(function (x) {
+          traversals.y.forEach(function (y) {
+              cell = { x: x, y: y };
+              tile = self.grid.cellContent(cell);
 
-          // Converge the two tiles' positions
-          tile.updatePosition(positions.next);
+              if (tile) {
+                  var positions = self.findFarthestPosition(cell, vector);
+                  var next      = self.grid.cellContent(positions.next);
 
-          // Update the score
-          self.score += merged.value;
+                  // Only one merger per row traversal?
+                  if (next && next.value === tile.value && !next.mergedFrom) {
+                      var merged = new Tile(positions.next, tile.value * 2);
+                      merged.mergedFrom = [tile, next];
 
-          // The mighty 2048 tile
-          if (merged.value === 2048) self.won = true;
-        } else {
-          self.moveTile(tile, positions.farthest);
-        }
+                      self.grid.insertTile(merged);
+                      self.grid.removeTile(tile);
 
-        if (!self.positionsEqual(cell, tile)) {
-          moved = true; // The tile moved from its original cell!
-        }
-      }
-    });
-  });
+                      // Converge the two tiles' positions
+                      tile.updatePosition(positions.next);
 
-  if (moved) {
+                      // Update the score
+                      self.score += merged.value;
+
+                      // The mighty 2048 tile
+                      if (merged.value === 2048) self.won = true;
+                  } else {
+                      self.moveTile(tile, positions.farthest);
+                  }
+
+                  if (!self.positionsEqual(cell, tile)) {
+                      moved = true; // The tile moved from its original cell!
+                  }
+              }
+          });
+      });
+  }
+
+  if (moved || direction == "beat") {
     this.addRandomTile();
 
-    if (!this.movesAvailable()) {
+    if (!this.movesAvailable() || (direction == "beat" && !this.grid.cellsAvailable())) {
       this.over = true; // Game over!
     }
 
-    this.actuate();
+    this.actuate(direction == "beat");
   }
 };
 
@@ -201,7 +206,7 @@ GameManager.prototype.getVector = function (direction) {
     0: { x: 0,  y: -1 }, // Up
     1: { x: 1,  y: 0 },  // Right
     2: { x: 0,  y: 1 },  // Down
-    3: { x: -1, y: 0 }   // Left
+    3: { x: -1, y: 0 }  // Left
   };
 
   return map[direction];

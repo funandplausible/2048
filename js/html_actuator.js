@@ -16,6 +16,9 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     grid.cells.forEach(function (column) {
       column.forEach(function (cell) {
         if (cell) {
+          if (metadata.clearTiles) {
+              cell.savePosition();
+          }
           self.addTile(cell);
         }
       });
@@ -62,6 +65,14 @@ HTMLActuator.prototype.addTile = function (tile) {
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
+  console.log("------------");
+  console.log(window.currentBeat);
+  console.log(tile.x, tile.y);
+  if ((tile.y * 4 + tile.x) == window.currentBeat) {
+      console.log("here");
+      inner.classList.add("tile-highlight");
+  }
+  console.log("------------");
   inner.textContent = tile.value;
 
   if (tile.previousPosition) {
