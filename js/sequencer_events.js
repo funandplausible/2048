@@ -87,7 +87,7 @@
 
     function getTrack(i, title, artist) {
         var name = title;
-        $.get("http://funandplausible.com:5118/brainz/?artist=" + artist + "&track=" + name, art_callback(i, artist, name));
+        $.get("http://funandplausible.com:5118/?artist=" + artist + "&track=" + name, art_callback(i, artist, name));
     }
 
     $(document).ready(function() {
